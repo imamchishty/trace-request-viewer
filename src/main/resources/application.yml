@@ -1,0 +1,17 @@
+spring:
+  profiles.active: development
+  application:
+    name: trace-request-viewer
+
+server:
+  port: 8081
+
+trace-request:
+  hibernate:
+    hbm2ddl.auto: none
+    dialect: org.hibernate.dialect.PostgreSQLDialect
+  jdbc:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/trace_request
+    user: postgres
+    pass: postgres@123

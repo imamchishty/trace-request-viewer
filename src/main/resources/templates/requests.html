@@ -1,0 +1,76 @@
+<html>
+<head>
+    <style type="text/css">
+        #mynetwork {
+            width: '100%';
+            height:'100%';
+            border: 1px solid lightgray;
+        }
+    </style>
+    <link href="/dist/vis.css" rel="stylesheet" type="text/css" />
+    <script src="/dist/vis.js"></script>
+</head>
+<body>
+
+<p><div id="mynetwork"></div><br /></p>
+<script type="text/javascript">
+    var opts = {
+        manipulation: false,
+        height: '100%',
+        width: '100%',
+        autoResize: true,
+        clickToUse: true,
+        layout: {
+            hierarchical: {
+                enabled: true,
+                levelSeparation: 200
+            }
+        },
+        physics: {
+            hierarchicalRepulsion: {
+                nodeDistance: 300
+            }
+        },
+        interaction: {
+            hover: true,
+            tooltipDelay: 50
+        },
+        nodes:{
+            borderWidth: 1,
+            borderWidthSelected: 3,
+            font: {
+                color: '#343434',
+                size: 18, // px
+                face: 'arial',
+                background: 'none',
+                strokeWidth: 0, // px
+                strokeColor: '#ffffff',
+                align: 'center',
+            },
+        }
+    };
+
+    nodes = [
+
+        {{#requests}}
+            {'title': 'Application: {{applicationId}} <br/>Request Id : {{requestId}} <br/>Caller Id: callerId <br/>Path: {{path}} <br/>Status: {{status}} <br/>Exception Id: exceptionId <br/>HTTP status: {{httpStatusCode}}',
+                    'id': '{{requestId}}', 'size': 150, 'label': "Application: {{applicationId}} \nRequest Id : {{requestId}} \nGroup Id: {{groupId}} \nCaller Id: {{callerId}} \nPath: {{path}} \nStatus: {{status}} \nException Id: {{exceptionId}} \nHTTP status: {{httpStatusCode}}", 'color': "#e2d381", 'shape': 'box', 'font': {'face': 'monospace', 'align': 'left'}},
+        {{/requests}}
+    ]
+
+    edges = [
+
+        {{#nodes}}
+            {'from': "{{from.requestId}}", 'to': "{{to.requestId}}", 'arrows': 'to', 'physics': false, 'smooth': {'type': 'cubicBezier'}},
+        {{/nodes}}
+
+
+
+    ]
+
+    var container = document.getElementById('mynetwork');
+    var data = {'nodes': nodes, 'edges': edges}
+    var gph = new vis.Network(container, data, opts);
+</script>
+</body>
+</html>
