@@ -54,7 +54,7 @@
 
         {{#requests}}
             {'title': 'Application: {{applicationId}} <br/>Request Id : {{requestId}} <br/>Caller Id: callerId <br/>Path: {{path}} <br/>Status: {{status}} <br/>Exception Id: exceptionId <br/>HTTP status: {{httpStatusCode}}',
-                    'id': '{{requestId}}', 'size': 150, 'label': "Application: {{applicationId}} \nRequest Id : {{requestId}} \nGroup Id: {{groupId}} \nCaller Id: {{callerId}} \nPath: {{path}} \nStatus: {{status}} \nException Id: {{exceptionId}} \nHTTP status: {{httpStatusCode}}", 'color': "#e2d381", 'shape': 'box', 'font': {'face': 'monospace', 'align': 'left'}},
+                'id': '{{requestId}}', 'size': 150, 'label': "Application: {{applicationId}} \nRequest Id : {{requestId}} \nGroup Id: {{groupId}} \nCaller Id: {{callerId}} \nPath: {{path}}  \nStatus: {{status}} \nException Id: {{exceptionId}} \nHTTP status: {{httpStatusCode}}", 'color': {{#exceptionId}}"#D68883"{{/exceptionId}}{{^exceptionId}}"#e2d381"{{/exceptionId}}, 'shape': 'box', 'font': {'face': 'monospace', 'align': 'left'}},
         {{/requests}}
     ]
 

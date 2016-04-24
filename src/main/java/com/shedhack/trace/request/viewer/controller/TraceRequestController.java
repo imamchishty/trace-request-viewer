@@ -33,6 +33,10 @@ public class TraceRequestController {
         model.addAttribute("appId", "district1");
         model.addAttribute("requests", requests);
 
+ /*       for(Node node : RequestUtility.order(requests)) {
+            System.out.println("FROM " + node.getTo().getPath() + "-->" + node.getFrom().getPath());
+        }*/
+
         return "requests";
     }
 

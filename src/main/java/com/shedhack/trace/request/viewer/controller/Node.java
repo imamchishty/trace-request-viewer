@@ -23,6 +23,10 @@ public class Node {
         return to;
     }
 
+    public boolean toHasException() {
+        return (to.getExceptionId() != null && to.getExceptionId().length()>0);
+    }
+
     @Override
     public String toString() {
         return "{\"Node\":{"
