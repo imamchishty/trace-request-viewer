@@ -1,25 +1,29 @@
 package com.shedhack.trace.request.viewer.controller;
 
-import com.shedhack.trace.request.jpa.domain.Request;
+import com.shedhack.trace.request.api.model.RequestModel;
 
 /**
- * Created by imamchishty on 14/04/2016.
+ * <pre>
+ *     Links multiple {@link RequestModel} objects.
+ * </pre>
+ *
+ * @author imamchishty
  */
 public class Node {
 
-    private final Request from;
-    private final Request to;
+    private final RequestModel from;
+    private final RequestModel to;
 
-    public Node(Request from, Request to) {
+    public Node(RequestModel from, RequestModel to) {
         this.from = from;
         this.to = to;
     }
 
-    public Request getFrom() {
+    public RequestModel getFrom() {
         return from;
     }
 
-    public Request getTo() {
+    public RequestModel getTo() {
         return to;
     }
 

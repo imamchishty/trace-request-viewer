@@ -1,44 +1,52 @@
 package com.shedhack.trace.request.viewer.utility;
 
-import com.shedhack.trace.request.jpa.domain.Request;
 import com.shedhack.trace.request.viewer.controller.Node;
+import com.shedhack.trace.request.api.model.RequestModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
- * <pre>Request Utils</pre>
+ * <pre>
+ *     RequestModel Utils: orders list of requests.
+ * </pre>
+ *
+ * @author imamchishty
  */
 public class RequestUtility {
 
     /**
      * Inefficient but first cut for demo
      */
-    public static List<Node> order(List<Request> requests) {
+    public static List<Node> order(List<RequestModel> requests) {
 
         Map<String, Node> nodesMap = new HashMap<>();
-        Map<String, Request> map = new HashMap<>(requests.size());
+        Map<String, RequestModel> map = new HashMap<>(requests.size());
 
-        for(Request request : requests) {
+        for(RequestModel request : requests) {
             map.put(request.getRequestId(), request);
         }
 
-        String startRequestId = null;
+        String startRequestModelId = null;
 
-        for (Request request : requests) {
+        // Find the first request, this is the one where no callerId was set.
+        for (RequestModel request : requests) {
+
+            // Not the first so put straight into the node map of requests (not sorted).
             if(request.getCallerId() != null) {
                 nodesMap.put(request.getCallerId(), new Node(map.get(request.getCallerId()), request));
             }
             else {
-                startRequestId = request.getRequestId();
+                startRequestModelId = request.getRequestId();
             }
         }
 
         List<Node> orderedNodes = new ArrayList<>();
-        orderedNodes.add(nodesMap.get(startRequestId));
-        String pointer = nodesMap.get(startRequestId).getTo().getRequestId();
+        orderedNodes.add(nodesMap.get(startRequestModelId));
+        String pointer = nodesMap.get(startRequestModelId).getTo().getRequestId();
 
         for(int i=0; i<requests.size(); i++) {
             Node n = nodesMap.get(pointer);
