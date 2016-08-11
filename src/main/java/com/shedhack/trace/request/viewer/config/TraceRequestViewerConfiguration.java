@@ -39,4 +39,9 @@ public class TraceRequestViewerConfiguration {
         };
     }
 
+    @Bean
+    public TraceRequestViewerController traceRequestViewerController() {
+        return new TraceRequestViewerController();
+    }
+
 }

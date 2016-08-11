@@ -23,8 +23,20 @@ public class RequestUtility {
      */
     public static List<Node> order(List<RequestModel> requests) {
 
+        List<Node> orderedNodes = new ArrayList<>();
+
+        // only have one record
+        if(requests.size() == 1) {
+            orderedNodes.add(new Node(null, requests.get(0)));
+            return orderedNodes;
+        }
+
+
+        // RequestId is the key
         Map<String, Node> nodesMap = new HashMap<>();
+
         Map<String, RequestModel> map = new HashMap<>(requests.size());
+
 
         for(RequestModel request : requests) {
             map.put(request.getRequestId(), request);
@@ -44,8 +56,8 @@ public class RequestUtility {
             }
         }
 
-        List<Node> orderedNodes = new ArrayList<>();
         orderedNodes.add(nodesMap.get(startRequestModelId));
+
         String pointer = nodesMap.get(startRequestModelId).getTo().getRequestId();
 
         for(int i=0; i<requests.size(); i++) {

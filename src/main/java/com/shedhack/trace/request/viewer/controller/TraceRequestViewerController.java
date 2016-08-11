@@ -24,7 +24,7 @@ public class TraceRequestViewerController {
 
     private static final String TRACE_REQUESTS_HTML = "tracerequests";
 
-    @RequestMapping(value = "/group/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/group-id/{id}", method = RequestMethod.GET)
     public String searchByGroupId(String id, Model model) {
 
         //#ff5050 - exception
